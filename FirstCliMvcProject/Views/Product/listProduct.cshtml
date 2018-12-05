@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FirstCliMvcProject.Models.Product>
+
+@{
+    ViewData["Title"] = "listproduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>listproduct</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="listproduct" asp-controller="Product" method="post" enctype="multipart/form-data">
+    <input type="text" name="UrunAdı" />
+    <input type="submit" value="ara" />
+</form>
+
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.productName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stok)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.marka)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imagePath)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stok)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.marka)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.imagePath)
+                    </td>
+                    <td>
+                        <img src="~/images/@item.imagePath" height="300" width="300" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
